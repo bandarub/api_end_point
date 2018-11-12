@@ -40,7 +40,7 @@ router.post("/", (req, res) => {
         withoutSpaces: lengthWithNoSpace(text)
       },
       wordCount: wordCount(text),
-      characterCount: json
+      characterCount: char_array
     };
     // "{\n" +
     //   '"textLength":{"withSpaces":' +
