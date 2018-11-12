@@ -16,7 +16,7 @@ router.post("/", (req, res) => {
   let jsonData = JSON.parse(JSON.stringify(data));
   let textWithOutSpace = jsonData.text.split(" ").join("");
   res.setHeader("Text-Type", "application/json");
-  if (validateInput(textWithOutSpace)||data.text === "") {
+  if (validateInput(textWithOutSpace) || data.text === "") {
     let { text } = jsonData;
 
     let textWithOutDigits = text.replace(/\d/, "");
@@ -34,20 +34,27 @@ router.post("/", (req, res) => {
     let json = JSON.stringify(char_array);
 
     //response
-    let string =
-      "{\n" +
-      '"textLength":{"withSpaces":' +
-      lengthWithSpace(text) +
-      ',"withoutSpaces":' +
-      lengthWithNoSpace(text) +
-      "},\n" +
-      '"wordCount":' +
-      wordCount(text) +
-      ",\n" +
-    //   '"characterCount":' +
-    //   json +
-    //   "\n" +
-      "}";
+    let string = {
+      textLength: {
+        withSpaces: lengthWithSpace(text),
+        withoutSpaces: lengthWithNoSpace(text)
+      },
+      wordCount: wordCount(text),
+      characterCount: json
+    };
+    // "{\n" +
+    //   '"textLength":{"withSpaces":' +
+    //   lengthWithSpace(text) +
+    //   ',"withoutSpaces":' +
+    //   lengthWithNoSpace(text) +
+    //   "},\n" +
+    //   '"wordCount":' +
+    //   wordCount(text) +
+    //   ",\n" +
+      //   '"characterCount":' +
+      //   json +
+      //   "\n" +
+    //   "}";
     res.send(string);
   } else {
     res.status(406).send('{ "error": "Only English letters are acceptable" }');
