@@ -20,7 +20,7 @@ lengthWithNoSpace = text => {
 
 //Sorting String
 sortString = str => {
-  let arr = str.split("");
+  let arr = str.toLowerCase().split("");
   let sorted = arr.sort().join("");
   return sorted;
 };

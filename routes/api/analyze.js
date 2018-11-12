@@ -19,16 +19,17 @@ router.post("/", (req, res) => {
   if (validateInput(textWithOutSpace) || data.text === "") {
     let { text } = jsonData;
 
-    let textWithOutDigits = text.replace(/\d/, "");
+    let textWithOutDigits = text.replace(/\d/g, "");
     let sortedString = sortString(textWithOutDigits);
-    let stringNoDots = sortedString.replace(/\./, ""); //sorted string with only alphabets
+    let stringNoDots = sortedString.replace(/\./g, "");
+    let pureString = stringNoDots.replace(/\,/g, ""); //sorted string with only alphabets
 
     //letter frequency
-    singleChars = uniqueChar(stringNoDots);
+    singleChars = uniqueChar(pureString);
     let char_array = [];
     for (let i = 0; i < singleChars.length; i++) {
       char_array.push(
-        generate_Key(singleChars[i], countChar(stringNoDots, singleChars[i]))
+        generate_Key(singleChars[i], countChar(pureString, singleChars[i]))
       );
     }
     let json = JSON.stringify(char_array);
@@ -51,9 +52,9 @@ router.post("/", (req, res) => {
     //   '"wordCount":' +
     //   wordCount(text) +
     //   ",\n" +
-      //   '"characterCount":' +
-      //   json +
-      //   "\n" +
+    //   '"characterCount":' +
+    //   json +
+    //   "\n" +
     //   "}";
     res.send(string);
   } else {
