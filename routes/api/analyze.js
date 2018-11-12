@@ -16,7 +16,7 @@ router.post("/", (req, res) => {
   let jsonData = JSON.parse(JSON.stringify(data));
   let textWithOutSpace = jsonData.text.split(" ").join("");
   res.setHeader("Text-Type", "application/json");
-  if (validateInput(textWithOutSpace)) {
+  if (validateInput(textWithOutSpace)||data.text === "") {
     let { text } = jsonData;
 
     let textWithOutDigits = text.replace(/\d/, "");
@@ -44,9 +44,9 @@ router.post("/", (req, res) => {
       '"wordCount":' +
       wordCount(text) +
       ",\n" +
-      '"characterCount":' +
-      json +
-      "\n" +
+    //   '"characterCount":' +
+    //   json +
+    //   "\n" +
       "}";
     res.send(string);
   } else {
