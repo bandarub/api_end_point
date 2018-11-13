@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const analyze = require('./routes/api/analyze');
+const analyze = require('./api/analyze');
 
 const app=express();
 const port=process.env.PORT||5000;
