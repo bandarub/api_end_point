@@ -12,5 +12,5 @@ app.use(bodyParser.json());
 //use Routes
 app.use('/api/analyze',analyze);
 
-app.listen(port,()=>console.log(`Server started on port ${port}`));
+app.listen(port,()=>console.log(`Server running on Port ${port}`));
 
